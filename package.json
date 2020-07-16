@@ -1,6 +1,6 @@
 {
   "name": "in-view-modern",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Get notified when a DOM element enters or exits the viewport.",
   "repository": "https://github.com/phillyx/in-view",
   "main": "dist/in-view-modern.min.js",

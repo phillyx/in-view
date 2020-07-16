@@ -8,11 +8,11 @@ add `IntersectionObserver` support
 this repository has been archived by the owner.
 It is now read-only.
 pull-reqeust  action does not work.
-so I create a new repository name
+so I create a new repository name.
 
 <del>[camwiegert.github.io/in-view](https://camwiegert.github.io/in-view)</del>
 
-[![Build Status](https://travis-ci.org/camwiegert/in-view-modern.svg?branch=master)](https://travis-ci.org/camwiegert/in-view-modern)
+[![Build Status](https://travis-ci.org/phillyx/in-view.svg?branch=master)](https://travis-ci.org/github/phillyx/in-view)
 [![npm/in-view](https://img.shields.io/npm/v/in-view-modern.svg?maxAge=2592000)](https://npmjs.com/package/in-view-modern)
 
 ![in-view.js](https://camwiegert.github.io/in-view/lib/images/in-view.png)
