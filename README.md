@@ -4,6 +4,12 @@ Get notified when a DOM element enters or exits the viewport. A small (~1.9kb gz
 
 add `IntersectionObserver` support
 
+
+this repository has been archived by the owner.
+It is now read-only.
+pull-reqeust  action does not work.
+so I create a new repository name
+
 <del>[camwiegert.github.io/in-view](https://camwiegert.github.io/in-view)</del>
 
 [![Build Status](https://travis-ci.org/camwiegert/in-view-modern.svg?branch=master)](https://travis-ci.org/camwiegert/in-view-modern)
