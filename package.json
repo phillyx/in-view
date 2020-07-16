@@ -5,8 +5,8 @@
   "repository": "https://github.com/phillyx/in-view",
   "main": "dist/in-view-modern.min.js",
   "scripts": {
-    "start": "NODE_ENV=production webpack -wp",
-    "build": "NODE_ENV=production webpack -p",
+    "start": "set NODE_ENV=production && webpack -wp",
+    "build": "set NODE_ENV=production && webpack -p",
     "prepublish": "npm run -s test",
     "lint": "eslint src/**/*.js",
     "pretest": "npm run -s lint",

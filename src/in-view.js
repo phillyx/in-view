@@ -1,7 +1,7 @@
 import Registry from './registry';
 import { inViewport } from './viewport';
 import { throttle } from 'lodash';
-
+import { isNative } from './utils'
 /**
 * Create and return the inView function.
 */
