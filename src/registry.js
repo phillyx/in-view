@@ -18,26 +18,42 @@ class inViewRegistry {
     /**
     * Check each element in the registry, if an element
     * changes states, fire an event and operate on current.
+    * @modified 
+    * @author phillyx
+    * @email 1020450921@qq.com
+    * @description Add support for handling a single DOM
+    * @updateDate 2020-07-16
     */
-    check() {
-        this.elements.forEach(el => {
-            let passes  = this.options.test(el, this.options);
-            let index   = this.current.indexOf(el);
-            let current = index > -1;
-            let entered = passes && !current;
-            let exited  = !passes && current;
-
-            if (entered) {
-                this.current.push(el);
-                this.emit('enter', el);
+    check(ele, inViewPort = true) {
+        if (ele) {
+            if (inViewPort) {
+                this.current.push(ele)
+                this.emit('enter', ele)
+                } else {
+                var index = this.current.indexOf(ele)
+                this.current.splice(index, 1)
+                this.emit('exit', ele)
             }
+        } else {
+            this.elements.forEach(el => {
+                let passes  = this.options.test(el, this.options);
+                let index   = this.current.indexOf(el);
+                let current = index > -1;
+                let entered = passes && !current;
+                let exited  = !passes && current;
 
-            if (exited) {
-                this.current.splice(index, 1);
-                this.emit('exit', el);
-            }
+                if (entered) {
+                    this.current.push(el);
+                    this.emit('enter', el);
+                }
 
-        });
+                if (exited) {
+                    this.current.splice(index, 1);
+                    this.emit('exit', el);
+                }
+
+            });
+        }
         return this;
     }
 

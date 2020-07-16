@@ -18,7 +18,7 @@ const inView = () => {
     */
     const interval = 100;
     const triggers = ['scroll', 'resize', 'load'];
-
+    const POSITIONS = ['top', 'right', 'bottom', 'left'];
     /**
     * Maintain a hashmap of all registries, a history
     * of selectors to enumerate, and an options object.
@@ -36,24 +36,60 @@ const inView = () => {
         });
     }, interval);
 
-    /**
-    * For each trigger event on window, add a listener
-    * which checks each registry.
-    */
-    triggers.forEach(event =>
-        addEventListener(event, check));
+    let setIntersectionObserver = null;
+    if (typeof IntersectionObserver !== 'undefined' && isNative(IntersectionObserver)) {
+        let observer = null
+         setIntersectionObserver = () => {
+            // define after `options` set
+            !observer &&
+                (observer = new IntersectionObserver(
+                    entries => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                var target = entry.target
+                                const sel = selectors.history.find(sel => selectors[sel].elements.find(el => el === target))
+                                // If intersectionRatio is 0, the target is out of view
+                                if (entry.intersectionRatio <= 0) {
+                                    selectors[sel].check(target, false)
+                                    return
+                                }
+                                selectors[sel].check(target)
+                            }
+                        })
+                  },
+                  {
+                    rootMargin: POSITIONS.map(p => (-options.offset[p] || 0) + 'px') // root-margin settings  is the opposite of  `control.offset()`
+                      .join(' '),
+                    threshold: options.threshold || 0,
+                  }
+                ));
 
-    /**
-    * If supported, use MutationObserver to watch the
-    * DOM and run checks on mutation.
-    */
-    if (window.MutationObserver) {
-        addEventListener('DOMContentLoaded', () => {
-            new MutationObserver(check)
-                .observe(document.body, { attributes: true, childList: true, subtree: true });
-        });
+            selectors.history.forEach(selector => {
+                selectors[selector].elements.forEach(x => {
+                    observer.observe(x)
+                })
+            })
+         }
+    } else {
+    
+        /**
+        * For each trigger event on window, add a listener
+        * which checks each registry.
+        */
+        triggers.forEach(event =>
+            addEventListener(event, check));
+
+        /**
+        * If supported, use MutationObserver to watch the
+        * DOM and run checks on mutation.
+        */
+        if (window.MutationObserver) {
+            addEventListener('DOMContentLoaded', () => {
+                new MutationObserver(check)
+                    .observe(document.body, { attributes: true, childList: true, subtree: true });
+            });
+        }
     }
-
     /**
     * The main interface. Take a selector and retrieve
     * the associated registry or create a new one.
@@ -75,7 +111,7 @@ const inView = () => {
             selectors[selector] = Registry(elements, options);
             selectors.history.push(selector);
         }
-
+        setIntersectionObserver && setIntersectionObserver()
         return selectors[selector];
     };
 
@@ -86,11 +122,10 @@ const inView = () => {
     control.offset = o => {
         if (o === undefined) return options.offset;
         const isNum = n => typeof n === 'number';
-        ['top', 'right', 'bottom', 'left']
-            .forEach(isNum(o) ?
-                dim => options.offset[dim] = o :
-                dim => isNum(o[dim]) ? options.offset[dim] = o[dim] : null
-            );
+        POSITIONS.forEach(isNum(o) ?
+            dim => options.offset[dim] = o :
+            dim => isNum(o[dim]) ? options.offset[dim] = o[dim] : null
+        );
         return options.offset;
     };
 
