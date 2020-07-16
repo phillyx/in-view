@@ -2,10 +2,12 @@
 
 Get notified when a DOM element enters or exits the viewport. A small (~1.9kb gzipped), dependency-free, javascript utility for IE9+.
 
-[camwiegert.github.io/in-view](https://camwiegert.github.io/in-view)
+add `IntersectionObserver` support
 
-[![Build Status](https://travis-ci.org/camwiegert/in-view.svg?branch=master)](https://travis-ci.org/camwiegert/in-view)
-[![npm/in-view](https://img.shields.io/npm/v/in-view.svg?maxAge=2592000)](https://npmjs.com/package/in-view)
+<del>[camwiegert.github.io/in-view](https://camwiegert.github.io/in-view)</del>
+
+[![Build Status](https://travis-ci.org/camwiegert/in-view-modern.svg?branch=master)](https://travis-ci.org/camwiegert/in-view-modern)
+[![npm/in-view](https://img.shields.io/npm/v/in-view-modern.svg?maxAge=2592000)](https://npmjs.com/package/in-view-modern)
 
 ![in-view.js](https://camwiegert.github.io/in-view/lib/images/in-view.png)
 
@@ -13,12 +15,13 @@ Get notified when a DOM element enters or exits the viewport. A small (~1.9kb gz
 
 ## Installation
 
-Either download the [latest release](https://unpkg.com/in-view/dist/in-view.min.js) and include it in your markup or install with [npm](http://npmjs.com/package/in-view):
+<del>Either download the [latest release](https://unpkg.com/in-view/dist/in-view.min.js) and include it in your markup or install with [npm](http://npmjs.com/package/in-view):</del>
 
 ```sh
-npm install --save in-view
+npm install --save in-view-modern
 ```
-
+or
+copy `dist/in-view-modern.min.js`
 ---
 
 ## Basic Usage
