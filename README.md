@@ -2,13 +2,12 @@
 
 Get notified when a DOM element enters or exits the viewport. A small (~1.9kb gzipped), dependency-free, javascript utility for IE9+.
 
-add `IntersectionObserver` support
+**add `IntersectionObserver` support**
 
-
-this repository has been archived by the owner.
+**this repository has been archived by the owner.
 It is now read-only.
 pull-reqeust  action does not work.
-so I create a new repository name.
+so I create a new repository name.**
 
 <del>[camwiegert.github.io/in-view](https://camwiegert.github.io/in-view)</del>
 
